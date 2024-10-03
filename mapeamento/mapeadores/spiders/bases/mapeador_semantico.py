@@ -1,106 +1,120 @@
 import scrapy
 
-from unidecode import unidecode
+from slugify import slugify
+from urllib.parse import urlparse, urlunparse
 
 from mapeadores.spiders.bases.mapeador import Mapeador
 
 class MapeadorSemantico(Mapeador):
+    replacements = [("´", ""), ("`", ""), ("'", "")]
+    stopwords = ["d", "da", "de", "do", "das", "dos"]
+
     custom_settings = {
         "RETRY_ENABLED": False,
         "AUTOTHROTTLE_ENABLED": True,
-        "AUTOTHROTTLE_TARGET_CONCURRENCY": 100,
+        "AUTOTHROTTLE_TARGET_CONCURRENCY": 200,
     }
 
     def start_requests(self):
-        self._read_data()        
-
+        print(f"------- COMEÇANDO MAPEAMENTO DE {self.name()} -------")
+        
         for i in range(len(self.territories)):
             self._print_log(i)
-
-            name = self._normalize_str(self.territories[i]["name"])
-            state_code = self._normalize_str(self.territories[i]["state_code"])
 
             item = {
                 "territory_id": self.territories[i]['id'],
                 "city": self.territories[i]['name'],
-                "state": state_code,
+                "state": self.territories[i]["state_code"],
             }
 
-            for protocol_option in ["http", "https"]:
-                for name_option in self.domain_generator(name):                    
-                    for url_option in self.urls_pattern(protocol_option, name_option, state_code):
-                        yield scrapy.Request(
-                            url_option, 
-                            callback=self.parse, 
-                            cb_kwargs={"item": item}
-                        )
+            for url_option in self.generate_combinations(item["city"], item["state"]):
+                yield scrapy.Request(
+                    url_option, 
+                    callback=self.parse, 
+                    cb_kwargs={"item": item}
+                )
 
-    def _read_data(self):
-        print(f"------- COMEÇANDO MAPEAMENTO DE {self.pattern_name()} -------")
-        self.read_csv() 
+    def generate_combinations(self, name, state_code):
+        schemes = ["http", "https"]
+        url_combinations = set()
 
-    def _normalize_str(self, string):
-        string = (
-            unidecode(string).strip().lower().replace("-", " ").replace("'", "")
-        )
-        return string
+        for pattern in self.url_patterns:
 
-    # COMBINATIONS
+            pattern = pattern.replace("uf", state_code) 
+            parsed_url = urlparse(pattern)
 
-    def domain_generator(self, name):
-        # strings
-        cityname = self.remove_blankspaces(name)             # cityname
-        city_name = self.blankspaces_to_underline(name)      # city_name
-        hifen_city_name = self.blankspaces_to_hifen(name)    # city-name
-        abbrev = self.name_abbreviation(name)                # cn 
+            if "municipio" in parsed_url.hostname:
+
+                for scheme in schemes:
+                    for option in self.domain_generator(name):
+                        hostname = parsed_url.hostname.replace("municipio", option)
+                        url = urlunparse(parsed_url._replace(scheme=scheme, netloc=hostname))
+                        url_combinations.add(url)
+
+            elif "municipio" in parsed_url.path:
+
+                for scheme in schemes:
+                    for option in self.path_generator(name):
+                        path = parsed_url.path.replace("municipio", option)
+                        url = urlunparse(parsed_url._replace(scheme=scheme, path=path))
+                        url_combinations.add(url)
+
+            else: 
+                print("erro") # colocar no log
+
+        return url_combinations
+
+
+    def domain_generator(self, city):
+        """
+        special characters aren't allowed in domains
+        """ 
+        combinations = set()
+
+        for name in self.add_prefeitura_to_name(city):
+            combinations.add(self.no_blankspaces(name))           # cityname      
+            combinations.add(self.abbreviated(name))              # cn
+            combinations.update(self.name_parts_set(name))        # city | name
         
-        # lists
-        combination_list = [
-            cityname,
-            city_name,
-            hifen_city_name,
-            abbrev,
+        return combinations
+
+
+    def path_generator(self, city):
+        """
+        same as domain_generator(), but special characters are allowed
+        """
+        combinations = self.domain_generator(city)
+
+        for name in self.add_prefeitura_to_name(city):
+            combinations.add(self.name_with_underline(name))    # city_name
+            combinations.add(self.name_with_hifen(name))        # city-name
+
+        return combinations
+
+    def add_prefeitura_to_name(self, name):
+        return [
+            name,
+            f"prefeitura {name}",
+            f"prefeitura de {name}",
+            f"prefeitura municipal {name}",
+            f"prefeitura municipal de {name}",
         ]
+    
+    def no_blankspaces(self, name): 
+        return slugify(name, separator="", replacements=self.replacements)
 
-        name_parts = self.name_parts(name)                   # city | name
-        starts_with_prefeitura = self.add_prefeitura_to_names(combination_list) # pm/prefeitura + all
-        combination_list += name_parts + starts_with_prefeitura
+    def name_with_underline(self, name): 
+        return slugify(name, separator="_", replacements=self.replacements)
 
-        return combination_list
+    def name_with_hifen(self, name): 
+        return slugify(name, separator="-", replacements=self.replacements)
 
-    # DOMAIN FORMATS
+    def name_parts_set(self, name): 
+        stopwords = self.stopwords + ["prefeitura", "municipal"]
+        return set(slugify(name, separator="-", replacements=self.replacements, stopwords=stopwords).split("-"))
 
-    def remove_blankspaces(self, name): 
-        # cityname
-        return name.replace(" ", "")
-
-    def blankspaces_to_underline(self, name): 
-        # city_name
-        return name.replace(" ", "_")
-
-    def blankspaces_to_hifen(self, name): 
-        # city-name
-        return name.replace(" ", "-")
-
-    def name_abbreviation(self, city_name): 
-        # cn 
-        subnames = city_name.split()
+    def abbreviated(self, name):
         abbrev = ""
-        for n in subnames:
-            if n not in ["da", "de", "do"]:
-                abbrev += n[0]
+        for n in slugify(name, separator="-", replacements=self.replacements, stopwords=self.stopwords).split("-"):
+            abbrev += n[0]
         return abbrev
-
-    def name_parts(self, name): 
-        # city | name
-        name = name.replace(" da ", " ").replace(" de ", " ").replace(" do ", " ")
-        return name.split()
-
-    def add_prefeitura_to_names(self, list_names): 
-        # prefeitura + all
-        aux = []
-        for name in list_names:
-            aux.append(f"pm{name}")         # pm: prefeitura municipal
-            aux.append(f"prefeitura{name}")
-            aux.append(f"prefeiturade{name}")
-        return aux
