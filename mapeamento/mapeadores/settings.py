@@ -65,9 +65,9 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 32
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "mapeadores.pipelines.mapeadoresPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    "mapeadores.pipelines.FilterAndExportPipeline": 100,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -95,3 +95,4 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
+FEED_EXPORT_FIELDS = ["territory_id", "state", "city", "pattern", "status",	"date_from", "date_to", "url"]
