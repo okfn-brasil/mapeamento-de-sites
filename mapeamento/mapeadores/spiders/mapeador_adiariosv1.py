@@ -6,8 +6,9 @@ import scrapy
 from mapeadores.spiders.bases.mapeador_semantico import MapeadorSemantico
 from mapeadores.items import MapeamentoItem
 
-class MapeadorAdiarioV1(MapeadorSemantico):
-    name = "adiarioV1"
+
+class MapeadorAdiariosV1(MapeadorSemantico):
+    name = "adiarios_V1"
     
     url_patterns = [
         # https://www.buriticupu.ma.gov.br/diariooficial.php
@@ -15,13 +16,13 @@ class MapeadorAdiarioV1(MapeadorSemantico):
 
         "https://www.municipio.uf.gov.br/diariooficial.php",
     ]
-    
+
     def parse(self, response, item):
         if self.belongs_to_pattern(response):
-            item["pattern"] = self.name()
+            date_to = self.get_date(response, 0)
             item["url"] = response.url
-            item["date_to"] = self.get_date(response, 0)
-            item["status"] = self.get_status(item["date_to"])
+            item["date_to"] = date_to
+            item["status"] = self.get_status(date_to)
 
             yield scrapy.Request(
                 f"{response.url}?pagina={self.get_last_page(response)}", 
@@ -31,20 +32,14 @@ class MapeadorAdiarioV1(MapeadorSemantico):
 
         else:
             yield MapeamentoItem(
-                **item,
-                pattern = "",
-                url = "",
-                status = "inválido",
-                date_from = "",
-                date_to = "",
-            )
+                **self.InvalidItem(item, response.url),
+            )    
 
-    def parse_last_page(self, response, item):
-            
-            yield MapeamentoItem(
-                **item,
-                date_from = self.get_date(response, -1),
-            )
+    def parse_last_page(self, response, item):  
+        yield MapeamentoItem(
+            **item,
+            date_from = self.get_date(response, -1),
+        )
 
     def belongs_to_pattern(self, response):
         if (

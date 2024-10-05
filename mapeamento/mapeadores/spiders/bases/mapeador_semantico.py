@@ -4,6 +4,7 @@ from slugify import slugify
 from urllib.parse import urlparse, urlunparse
 
 from mapeadores.spiders.bases.mapeador import Mapeador
+from mapeadores.items import MapeamentoItem
 
 class MapeadorSemantico(Mapeador):
     replacements = [("´", ""), ("`", ""), ("'", "")]
@@ -16,7 +17,7 @@ class MapeadorSemantico(Mapeador):
     }
 
     def start_requests(self):
-        print(f"------- COMEÇANDO MAPEAMENTO DE {self.name()} -------")
+        print(f"------- COMEÇANDO MAPEAMENTO DE {self.name} -------")
         
         for i in range(len(self.territories)):
             self._print_log(i)
@@ -25,6 +26,7 @@ class MapeadorSemantico(Mapeador):
                 "territory_id": self.territories[i]['id'],
                 "city": self.territories[i]['name'],
                 "state": self.territories[i]["state_code"],
+                "pattern": self.name,
             }
 
             for url_option in self.generate_combinations(item["city"], item["state"]):
@@ -64,7 +66,13 @@ class MapeadorSemantico(Mapeador):
 
         return url_combinations
 
-
+    def InvalidItem(self, item, url):
+        item["url"] = url
+        item["status"] = "invalido"
+        item["date_from"] = ""
+        item["date_to"] = ""
+        return item
+                         
     def domain_generator(self, city):
         """
         special characters aren't allowed in domains
