@@ -4,11 +4,10 @@ from slugify import slugify
 from urllib.parse import urlparse, urlunparse
 
 from mapeadores.spiders.bases.mapeador import Mapeador
-from mapeadores.items import MapeamentoItem
 
 class MapeadorSemantico(Mapeador):
     replacements = [("´", ""), ("`", ""), ("'", "")]
-    stopwords = ["d", "da", "de", "do", "das", "dos"]
+    stopwords = ["d", "da", "de", "do", "das", "dos", "e"]
 
     custom_settings = {
         "RETRY_ENABLED": False,
@@ -80,10 +79,11 @@ class MapeadorSemantico(Mapeador):
         combinations = set()
 
         for name in self.add_prefeitura_to_name(city):
-            combinations.add(self.no_blankspaces(name))           # cityname      
-            combinations.add(self.abbreviated(name))              # cn
-            combinations.update(self.name_parts_set(name))        # city | name
+            combinations.add(self.no_blankspaces(name))          
+            combinations.update(self.name_parts_set(name))        
+            combinations.update(self.progressive_colapsed_words_set(name))
         
+        combinations.remove("")
         return combinations
 
 
@@ -94,8 +94,8 @@ class MapeadorSemantico(Mapeador):
         combinations = self.domain_generator(city)
 
         for name in self.add_prefeitura_to_name(city):
-            combinations.add(self.name_with_underline(name))    # city_name
-            combinations.add(self.name_with_hifen(name))        # city-name
+            combinations.add(self.name_with_underline(name))    
+            combinations.add(self.name_with_hifen(name))        
 
         return combinations
 
@@ -119,10 +119,39 @@ class MapeadorSemantico(Mapeador):
 
     def name_parts_set(self, name): 
         stopwords = self.stopwords + ["prefeitura", "municipal"]
-        return set(slugify(name, separator="-", replacements=self.replacements, stopwords=stopwords).split("-"))
+        return set(slugify(name, separator=" ", replacements=self.replacements, stopwords=stopwords).split())
 
-    def abbreviated(self, name):
-        abbrev = ""
-        for n in slugify(name, separator="-", replacements=self.replacements, stopwords=self.stopwords).split("-"):
-            abbrev += n[0]
-        return abbrev
+    def progressive_colapsed_words_set(self, name):
+        """
+        Example: from "Prefeitura Municipal Santo Antonio do Paraiso" creates
+        - P Municipal Santo Antonio do Paraiso
+        - P M Santo Antonio do Paraiso
+        - P M S Antonio do Paraiso
+        - P M S A do Paraiso
+        - P M S A d Paraiso
+        - P M S A d P
+
+        with and without stopwords
+        """
+        abbreviations = set()
+        words = slugify(name, separator=" ", replacements=self.replacements).split()
+
+        inicial = ""
+        for i in range(len(words)):
+            word = words[i]
+            
+            if word not in self.stopwords:
+                inicial += word[0]
+                abbreviations.add(self._check(inicial, words[i+1:]))
+                abbreviations.add(self._check(inicial, self._no_stopwords_sublist(words[i+1:])))
+        
+        return abbreviations
+
+    def _no_stopwords_sublist(self, sublist):
+        return [x for x in sublist if x not in self.stopwords]
+    
+    def _check(self, inicial, sublist):
+        opt = f"{inicial}{''.join(sublist)}"
+        if len(opt) > 1:
+            return opt
+        return ""

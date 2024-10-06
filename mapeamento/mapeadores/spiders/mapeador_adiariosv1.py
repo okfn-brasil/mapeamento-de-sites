@@ -10,10 +10,13 @@ from mapeadores.items import MapeamentoItem
 class MapeadorAdiariosV1(MapeadorSemantico):
     name = "adiarios_V1"
     
-    url_patterns = [
-        # https://www.buriticupu.ma.gov.br/diariooficial.php
-        # https://www.anajatuba.ma.gov.br/diariooficial.php
+    """
+    Cases
+    https://www.buriticupu.ma.gov.br/diariooficial.php
+    https://www.anajatuba.ma.gov.br/diariooficial.php
+    """
 
+    url_patterns = [
         "https://www.municipio.uf.gov.br/diariooficial.php",
     ]
 
