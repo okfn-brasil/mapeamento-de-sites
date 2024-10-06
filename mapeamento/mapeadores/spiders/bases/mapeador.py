@@ -1,6 +1,7 @@
 import csv
 import time
 import datetime
+import logging
 
 from pathlib import Path
 
@@ -8,15 +9,27 @@ import scrapy
 
 
 class Mapeador(scrapy.Spider):
+    file_path = "../../resources/territories.csv"
     territories = []
+    logger = None
 
     def __init__(self):
-        file_path = (Path(__file__).parent / "../../resources/territories.csv").resolve()
+        self.set_logger()       
 
-        with open(file_path, encoding="utf-8") as csvfile:
+        file = (Path(__file__).parent / self.file_path).resolve()
+        with open(file, encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 self.territories.append(row)
+
+    def set_logger(self):
+        self.logger = logging.getLogger(self.name)
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+        formatter = logging.Formatter('[%(asctime)s] Mapeador %(name)s | %(levelname)s: %(message)s', 
+                                      datefmt='%m-%d-%Y %H:%M:%S')
+        ch.setFormatter(formatter)
+        self.logger.addHandler(ch)
 
     def get_status(self, date):
         current = datetime.date.today()
@@ -25,8 +38,8 @@ class Mapeador(scrapy.Spider):
                 return "atual"
         return "descontinuado"
 
-    def _print_log(self, i):
+    def show_progress(self, i):
         if i % 10 == 0:
-            print(
-                f"[{i}/{len(self.territories)}] {time.strftime('%H:%M:%S', time.localtime())}"
-            )
+            self.logger.info(f"{i}/{len(self.territories)}")
+
+        

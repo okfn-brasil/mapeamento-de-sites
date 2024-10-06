@@ -15,11 +15,9 @@ class MapeadorSemantico(Mapeador):
         "AUTOTHROTTLE_TARGET_CONCURRENCY": 200,
     }
 
-    def start_requests(self):
-        print(f"------- COMEÇANDO MAPEAMENTO DE {self.name} -------")
-        
+    def start_requests(self):        
         for i in range(len(self.territories)):
-            self._print_log(i)
+            self.show_progress(i)
 
             item = {
                 "territory_id": self.territories[i]['id'],
@@ -83,7 +81,7 @@ class MapeadorSemantico(Mapeador):
             combinations.update(self.name_parts_set(name))        
             combinations.update(self.progressive_colapsed_words_set(name))
         
-        combinations.remove("")
+        combinations.discard("")
         return combinations
 
 
