@@ -40,6 +40,6 @@ class Mapeador(scrapy.Spider):
 
     def show_progress(self, i):
         if i % 10 == 0:
-            self.logger.info(f"{i}/{len(self.territories)}")
+            self.logger.info(f"Progress {i}/{len(self.territories)}")
 
         

@@ -18,7 +18,7 @@ class MapeadorDoem(MapeadorSemantico):
     """
 
     url_patterns = [
-        "https://doem.org.br/ba/municipio/diarios",
+        "https://doem.org.br/state_code/city_name/diarios",
     ]
 
     def parse(self, response, item):

@@ -17,7 +17,7 @@ class MapeadorAdiariosV1(MapeadorSemantico):
     """
 
     url_patterns = [
-        "https://www.municipio.uf.gov.br/diariooficial.php",
+        "https://www.city_name.state_code.gov.br/diariooficial.php",
     ]
 
     def parse(self, response, item):

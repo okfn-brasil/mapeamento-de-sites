@@ -12,9 +12,10 @@ from scrapy.exceptions import DropItem
 
 class FilterAndExportPipeline:
     """
-    Filter repeated itens and distribute them across multiple CSV files according 
-    to their 'status' field
+    Filter repeated itens and distribute them across multiple CSV
+    files according to their 'status' field
     """
+    data_dir = "../resultados"
     
     def open_spider(self, spider):
         self.status_codes = {}
@@ -26,7 +27,12 @@ class FilterAndExportPipeline:
             exporter.finish_exporting()
             csv_file.close()
 
-    def _exporter_for_item(self, adapter):
+    def exporter_for_item(self, adapter):
+        """
+        Creates CSV exporter per site status group
+        - group invalidos: receives invalido status
+        - group validos: receives atual and descontinuado status
+        """
         status = adapter["status"]
 
         if status not in self.status_codes:
@@ -40,10 +46,16 @@ class FilterAndExportPipeline:
 
     def _file_name(self, status, pattern):
         if status == "invalido":
-            return f"../resultados/invalidos/{pattern}_invalidos"
-        return f"../resultados/validos/{pattern}_validos"
+            return f"{self.data_dir}/{pattern}_invalidos"
+        return f"{self.data_dir}/{pattern}_validos"
 
-    def _item_exists(self, adapter):
+    def item_exists(self, adapter):
+        """
+        Check if item already exists considering 
+        - id as uniqueness criteria, like 0000000YYYY-MM-DDhttp...
+        - comparison to valid_entries and invalid_entries, where 
+        unique itens are kept
+        """
         id = f'{adapter["territory_id"]}{adapter["date_from"]}{adapter["url"]}'
 
         if adapter["status"] == "invalido":
@@ -62,10 +74,10 @@ class FilterAndExportPipeline:
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)
 
-        if self._item_exists(adapter):
+        if self.item_exists(adapter):
             raise DropItem("Dropping duplicated item")
 
-        exporter = self._exporter_for_item(adapter)
+        exporter = self.exporter_for_item(adapter)
         exporter.export_item(item)
         return item
 

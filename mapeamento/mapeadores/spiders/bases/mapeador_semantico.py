@@ -38,23 +38,26 @@ class MapeadorSemantico(Mapeador):
         url_combinations = set()
 
         for pattern in self.url_patterns:
-
-            pattern = pattern.replace("uf", state_code) 
+            pattern = pattern.replace("state_code", state_code) 
             parsed_url = urlparse(pattern)
 
-            if "municipio" in parsed_url.hostname:
-
+            """
+            It creates combinations depending on the context. If the 
+            generalization "city_name"...
+            - is in the hostname, combinations are more restricted 
+            - is in the path, combinations are freer
+            """
+            if "city_name" in parsed_url.hostname:
                 for scheme in schemes:
                     for option in self.domain_generator(name):
-                        hostname = parsed_url.hostname.replace("municipio", option)
+                        hostname = parsed_url.hostname.replace("city_name", option)
                         url = urlunparse(parsed_url._replace(scheme=scheme, netloc=hostname))
                         url_combinations.add(url)
 
-            elif "municipio" in parsed_url.path:
-
+            elif "city_name" in parsed_url.path:
                 for scheme in schemes:
                     for option in self.path_generator(name):
-                        path = parsed_url.path.replace("municipio", option)
+                        path = parsed_url.path.replace("city_name", option)
                         url = urlunparse(parsed_url._replace(scheme=scheme, path=path))
                         url_combinations.add(url)
 
@@ -77,13 +80,12 @@ class MapeadorSemantico(Mapeador):
         combinations = set()
 
         for name in self.add_prefeitura_to_name(city):
-            combinations.add(self.no_blankspaces(name))          
+            combinations.add(self.name_no_blankspaces(name))          
             combinations.update(self.name_parts_set(name))        
             combinations.update(self.progressive_colapsed_words_set(name))
         
         combinations.discard("")
         return combinations
-
 
     def path_generator(self, city):
         """
@@ -106,7 +108,7 @@ class MapeadorSemantico(Mapeador):
             f"prefeitura municipal de {name}",
         ]
     
-    def no_blankspaces(self, name): 
+    def name_no_blankspaces(self, name): 
         return slugify(name, separator="", replacements=self.replacements)
 
     def name_with_underline(self, name): 
@@ -121,34 +123,44 @@ class MapeadorSemantico(Mapeador):
 
     def progressive_colapsed_words_set(self, name):
         """
-        Example: from "Prefeitura Municipal Santo Antonio do Paraiso" creates
+        Iterates over a words list creating combinations following
+        abbreviation + rest pattern. 
+        Stopwords are allowed to exist in "rest" part, but not 
+        in "abbreviation" part.
+        
+        Example: 
+        input: Prefeitura Municipal Santo Antonio do Paraiso
+        outputs:
         - P Municipal Santo Antonio do Paraiso
         - P M Santo Antonio do Paraiso
         - P M S Antonio do Paraiso
         - P M S A do Paraiso
-        - P M S A d Paraiso
-        - P M S A d P
-
-        with and without stopwords
+        - P M S A Paraiso
+        - P M S A P
         """
-        abbreviations = set()
+        colapsed_words = set()
         words = slugify(name, separator=" ", replacements=self.replacements).split()
 
-        inicial = ""
+        abbrev = ""
         for i in range(len(words)):
             word = words[i]
             
             if word not in self.stopwords:
-                inicial += word[0]
-                abbreviations.add(self._check(inicial, words[i+1:]))
-                abbreviations.add(self._check(inicial, self._no_stopwords_sublist(words[i+1:])))
+                abbrev += word[0]
+                rest = words[i+1:]                
+                colapsed_words.add(self.join_parts(abbrev, rest))
+                colapsed_words.add(self.join_parts(abbrev, self._wo_stopwords(rest)))
         
-        return abbreviations
+        return colapsed_words
 
-    def _no_stopwords_sublist(self, sublist):
+    def _wo_stopwords(self, sublist):
         return [x for x in sublist if x not in self.stopwords]
     
-    def _check(self, inicial, sublist):
+    def join_parts(self, inicial, sublist):
+        """
+        Concatenate text parts, discarding one letter only possibility
+        For example, prevents returning "r" for "Recife"
+        """
         opt = f"{inicial}{''.join(sublist)}"
         if len(opt) > 1:
             return opt
