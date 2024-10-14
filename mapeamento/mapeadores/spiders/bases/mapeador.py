@@ -38,8 +38,8 @@ class Mapeador(scrapy.Spider):
                 return "atual"
         return "descontinuado"
 
-    def show_progress(self, i):
-        if i % 10 == 0:
-            self.logger.info(f"Progress {i}/{len(self.territories)}")
+    def show_progress(self, territory_index):
+        if territory_index % 10 == 0:
+            self.logger.info(f"Progress {territory_index}/{len(self.territories)}")
 
         
