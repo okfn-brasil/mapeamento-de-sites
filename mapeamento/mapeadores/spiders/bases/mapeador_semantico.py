@@ -16,13 +16,13 @@ class MapeadorSemantico(Mapeador):
     }
 
     def start_requests(self):        
-        for i in range(len(self.territories)):
+        for i, territory in enumerate(self.territories):
             self.show_progress(i)
 
             item = {
-                "territory_id": self.territories[i]['id'],
-                "city": self.territories[i]['name'],
-                "state": self.territories[i]["state_code"],
+                "territory_id": territory['id'],
+                "city": territory['name'],
+                "state": territory["state_code"],
                 "pattern": self.name,
             }
 
