@@ -7,6 +7,11 @@ import scrapy
 
 
 class MapeamentoItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    territory_id = scrapy.Field()
+    city = scrapy.Field()
+    state = scrapy.Field()
+    pattern = scrapy.Field()
+    url = scrapy.Field()    
+    date_from = scrapy.Field()
+    date_to = scrapy.Field()
+    status = scrapy.Field()
