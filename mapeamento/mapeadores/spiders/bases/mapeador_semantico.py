@@ -1,6 +1,5 @@
 import scrapy
 
-from slugify import slugify
 from urllib.parse import urlparse, urlunparse
 from itertools import product
 
@@ -34,68 +33,57 @@ class MapeadorSemantico(Mapeador):
                 )
 
     def generate_combinations(self, name, state_code):
+        return {
+            variation
+            for pattern in self.url_patterns
+            for variation in self.generate_pattern_variations(pattern, name, state_code)
+        }
+
+    def generate_pattern_variations(self, pattern, name, state_code):
         """
-        Creates combinations depending on the context. If the 
-        generalization "city_name"...
-        - is in the hostname, combinations are more restricted 
-        - is in the path, combinations are freer
+        Creates combinations depending on the context. 
+        If "city_name" is in the netloc, combinations are more limited
         """
+        pattern = pattern.replace("state_code", state_code.lower()) 
+        parsed_url = urlparse(pattern)
+        combinations = self.make_combinations(name)
+
+        if "city_name" in parsed_url.netloc:
+            combinations = self.remove_irrelevants(combinations, ["-", "_"])
+            generated_attribute = "netloc"
+        elif "city_name" in parsed_url.path:
+            combinations = self.remove_irrelevants(combinations)
+            generated_attribute = "path"
+        else:
+            self.logger.error("city_name should exist in URL pattern")
+            return
+
         schemes = ["http", "https"]
-        url_combinations = set()
+        for scheme, option in product(schemes, combinations):
+            replacements = {
+                "scheme": scheme,
+                generated_attribute: getattr(parsed_url, generated_attribute).replace(
+                    "city_name", option
+                ),
+            }
+            yield urlunparse(parsed_url._replace(**replacements))
 
-        for pattern in self.url_patterns:
-            pattern = pattern.replace("state_code", state_code) 
-            parsed_url = urlparse(pattern)
-
-            if "city_name" in parsed_url.hostname:
-                for scheme in schemes:
-                    for option in self.domain_generator(name):
-                        hostname = parsed_url.hostname.replace("city_name", option)
-                        url = urlunparse(parsed_url._replace(scheme=scheme, netloc=hostname))
-                        url_combinations.add(url)
-
-            elif "city_name" in parsed_url.path:
-                for scheme in schemes:
-                    for option in self.path_generator(name):
-                        path = parsed_url.path.replace("city_name", option)
-                        url = urlunparse(parsed_url._replace(scheme=scheme, path=path))
-                        url_combinations.add(url)
-
-            else: 
-                print("erro") # colocar no log
-
-        return url_combinations
-
-    def InvalidItem(self, item, url):
-        item["url"] = url
-        item["status"] = "invalido"
-        item["date_from"] = ""
-        item["date_to"] = ""
-        return item
-                         
-    def domain_generator(self, city):
-        """
-        special characters aren't allowed in domains
-        """ 
+    def make_combinations(self, city):
         combinations = set()
+        prepened_names = self.add_prefeitura_to_name(city)
 
-        for name in self.add_prefeitura_to_name(city):
-            combinations.add(self.name_no_blankspaces(name))          
-            combinations.update(self.name_parts_set(name))        
-            combinations.update(self.progressive_colapsed_words_set(name))
+        stopwords_list = ["da", "de", "do", "das", "dos", "e"]
+        stopwords_with_d = stopwords_list + ["d"]
+
+        stopwords_options = ([], stopwords_list, stopwords_with_d)
+        join_char_options = ([], "'", "-", ["'", "-"])
         
-        combinations.discard("")
-        return combinations
-
-    def path_generator(self, city):
-        """
-        same as domain_generator(), but special characters are allowed
-        """
-        combinations = self.domain_generator(city)
-
-        for name in self.add_prefeitura_to_name(city):
-            combinations.add(self.name_with_underline(name))    
-            combinations.add(self.name_with_hifen(name))        
+        for name, stopwords, char in product(prepened_names, stopwords_options, join_char_options):
+            combinations.add(utils.one_worded(name, stopwords))
+            combinations.add(utils.underscored(name, char, stopwords))
+            combinations.add(utils.hyphened(name, char, stopwords))
+            combinations.update(set(utils.splitted(name, char, stopwords_with_d)))
+            combinations.update(set(utils.progressive_collapsed(name, char, stopwords)))
 
         return combinations
 
@@ -106,62 +94,16 @@ class MapeadorSemantico(Mapeador):
             f"prefeitura de {name}",
             f"prefeitura municipal {name}",
             f"prefeitura municipal de {name}",
+            f"pm {name}",
         ]
     
-    def name_no_blankspaces(self, name): 
-        return slugify(name, separator="", replacements=self.replacements)
+    def remove_irrelevants(self, combinations, irrelevant_chars=[]):
+        irrelevants = irrelevant_chars + [
+            "municipal",
+            "prefeitura",
+        ] 
+        for option, irrelevant in product(combinations, irrelevants):
+            if irrelevant in option or len(option)<=1:
+                combinations.remove(option)
 
-    def name_with_underline(self, name): 
-        return slugify(name, separator="_", replacements=self.replacements)
-
-    def name_with_hifen(self, name): 
-        return slugify(name, separator="-", replacements=self.replacements)
-
-    def name_parts_set(self, name): 
-        stopwords = self.stopwords + ["prefeitura", "municipal"]
-        return set(slugify(name, separator=" ", replacements=self.replacements, stopwords=stopwords).split())
-
-    def progressive_colapsed_words_set(self, name):
-        """
-        Iterates over a words list creating combinations following
-        abbreviation + rest pattern. 
-        Stopwords are allowed to exist in "rest" part, but not 
-        in "abbreviation" part.
-        
-        Example: 
-        input: Prefeitura Municipal Santo Antonio do Paraiso
-        outputs:
-        - P Municipal Santo Antonio do Paraiso
-        - P M Santo Antonio do Paraiso
-        - P M S Antonio do Paraiso
-        - P M S A do Paraiso
-        - P M S A Paraiso
-        - P M S A P
-        """
-        colapsed_words = set()
-        words = slugify(name, separator=" ", replacements=self.replacements).split()
-
-        abbrev = ""
-        for i in range(len(words)):
-            word = words[i]
-            
-            if word not in self.stopwords:
-                abbrev += word[0]
-                rest = words[i+1:]                
-                colapsed_words.add(self.join_parts(abbrev, rest))
-                colapsed_words.add(self.join_parts(abbrev, self._wo_stopwords(rest)))
-        
-        return colapsed_words
-
-    def _wo_stopwords(self, sublist):
-        return [x for x in sublist if x not in self.stopwords]
-    
-    def join_parts(self, inicial, sublist):
-        """
-        Concatenate text parts, discarding one letter only possibility
-        For example, prevents returning "r" for "Recife"
-        """
-        opt = f"{inicial}{''.join(sublist)}"
-        if len(opt) > 1:
-            return opt
-        return ""
+        return combinations

@@ -21,11 +21,9 @@ def splitted(text, join_char=[], stopwords=[]):
 def progressive_collapsed(text, join_char=[], stopwords=[]):
     """
     Iterates over a words list creating combinations following
-    abbreviation + rest pattern. 
-    Stopwords are allowed to exist in "rest" part, but not 
-    in "abbreviation" part.
+    abbreviation + rest pattern.
     
-    Example: 
+    Example without stopwords
     input: Prefeitura Municipal Santo Antonio do Paraiso
     outputs:
     - P Municipal Santo Antonio do Paraiso
@@ -36,20 +34,23 @@ def progressive_collapsed(text, join_char=[], stopwords=[]):
     - P M S A P
     """
     collapsed_words = []
-    abbrev = ""
+    collapsed_prefix = ""
 
     for char in join_char:
         text = text.replace(char, "")
 
     words = slugify(text, separator=" ").split()
 
-    for i in range(len(words)):
-        word = words[i]
+    for i, word in enumerate(words):
         
         if word not in stopwords:
-            abbrev += word[0]
+            collapsed_prefix += word[0]
 
-        rest = words[i+1:]                
-        collapsed_words.append(f"{abbrev}{''.join(rest)}")
-    
+        following_words = words[i+1:]                
+        collapsed_words.append(f"{collapsed_prefix}{''.join(following_words)}")
+        collapsed_words.append(f"{collapsed_prefix}{''.join(_remove(following_words, stopwords))}")
+
     return collapsed_words
+
+def _remove(sublist, stopwords):
+    return [x for x in sublist if x not in stopwords]
