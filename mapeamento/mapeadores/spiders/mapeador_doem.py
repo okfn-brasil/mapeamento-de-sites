@@ -55,12 +55,15 @@ class MapeadorDoem(MapeadorSemantico):
             )
 
     def belongs_to_pattern(self, response):
-        if "doem.org.br" in response.text:
-            if "está Indisponível" not in response.text:
-                if "Não foi possível carregar o diário" not in response.text:
-                    if "404 - Página não encontrada" not in response.text:
-                        if "ibdm.org.br" not in response.url:
-                            return True
+        if all([
+           "doem.org.br" in response.text,
+           "está Indisponível" not in response.text,
+           "Não foi possível carregar o diário" not in response.text,
+           "404 - Página não encontrada" not in response.text,
+           "ibdm.org.br" not in response.url,
+        ]):
+            return True
+
         return False
 
     def get_date(self, response, position):
