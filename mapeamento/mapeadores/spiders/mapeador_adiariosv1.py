@@ -8,7 +8,7 @@ from mapeadores.items import MapeamentoItem
 
 
 class MapeadorAdiariosV1(MapeadorSemantico):
-    name = "adiarios_V1"
+    name = "adiarios_v1"
     
     """
     Cases

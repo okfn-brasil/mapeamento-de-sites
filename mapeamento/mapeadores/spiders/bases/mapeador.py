@@ -1,5 +1,4 @@
 import csv
-import time
 import datetime
 import logging
 
@@ -11,7 +10,6 @@ import scrapy
 class Mapeador(scrapy.Spider):
     file_path = "../../resources/territories.csv"
     territories = []
-    logger = None
 
     def __init__(self):
         self.set_logger()       
@@ -23,7 +21,6 @@ class Mapeador(scrapy.Spider):
                 self.territories.append(row)
 
     def set_logger(self):
-        self.logger = logging.getLogger(self.name)
         ch = logging.StreamHandler()
         ch.setLevel(logging.INFO)
         formatter = logging.Formatter('[%(asctime)s] Mapeador %(name)s | %(levelname)s: %(message)s', 

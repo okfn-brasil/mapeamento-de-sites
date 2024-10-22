@@ -17,7 +17,7 @@ class Mapeador<nome>(Mapeador<tipo>):
     exemplo 1
     exemplo 2
     """
-    # deve ter o termo "municipio" e "uf" nas partes generalizáveis
+    # deve ter o termo "city_name" e/ou "state_code" nas partes generalizáveis
     url_patterns = [
         "",
     ]

@@ -2,12 +2,12 @@ import scrapy
 
 from slugify import slugify
 from urllib.parse import urlparse, urlunparse
+from itertools import product
 
+from mapeadores.utils import utils
 from mapeadores.spiders.bases.mapeador import Mapeador
 
 class MapeadorSemantico(Mapeador):
-    replacements = [("´", ""), ("`", ""), ("'", "")]
-    stopwords = ["d", "da", "de", "do", "das", "dos", "e"]
 
     custom_settings = {
         "RETRY_ENABLED": False,
@@ -34,6 +34,12 @@ class MapeadorSemantico(Mapeador):
                 )
 
     def generate_combinations(self, name, state_code):
+        """
+        Creates combinations depending on the context. If the 
+        generalization "city_name"...
+        - is in the hostname, combinations are more restricted 
+        - is in the path, combinations are freer
+        """
         schemes = ["http", "https"]
         url_combinations = set()
 
@@ -41,12 +47,6 @@ class MapeadorSemantico(Mapeador):
             pattern = pattern.replace("state_code", state_code) 
             parsed_url = urlparse(pattern)
 
-            """
-            It creates combinations depending on the context. If the 
-            generalization "city_name"...
-            - is in the hostname, combinations are more restricted 
-            - is in the path, combinations are freer
-            """
             if "city_name" in parsed_url.hostname:
                 for scheme in schemes:
                     for option in self.domain_generator(name):

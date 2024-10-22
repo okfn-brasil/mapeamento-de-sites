@@ -54,7 +54,7 @@ class FilterAndExportPipeline:
         Check if item already exists considering 
         - id as uniqueness criteria, like 0000000YYYY-MM-DDhttp...
         - comparison to valid_entries and invalid_entries, where 
-        unique itens are kept
+        unique ids are kept
         """
         id = f'{adapter["territory_id"]}{adapter["date_from"]}{adapter["url"]}'
 
