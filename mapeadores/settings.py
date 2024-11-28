@@ -1,4 +1,4 @@
-# Scrapy settings for mapeamento project
+# Scrapy settings for mapeadores project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,27 +7,34 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "mapeamento"
+DATA_OUTPUT_DIR = "./resultados/brutos"
 
-SPIDER_MODULES = ["mapeamento.spiders"]
-NEWSPIDER_MODULE = "mapeamento.spiders"
+BOT_NAME = "mapeadores"
 
+SPIDER_MODULES = ["mapeadores.spiders"]
+NEWSPIDER_MODULE = "mapeadores.spiders"
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "mapeamento (+http://www.yourdomain.com)"
+USER_AGENT = (
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"
+)
+
+RETRY_ENABLED = False
+
+# Allows requests to same domain
+DUPEFILTER_CLASS = "scrapy.dupefilters.BaseDupeFilter"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 100
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 #DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 50
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -45,13 +52,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "mapeamento.middlewares.MapeamentoSpiderMiddleware": 543,
+#    "mapeadores.middlewares.MapeadoresSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "mapeamento.middlewares.MapeamentoDownloaderMiddleware": 543,
+#    "mapeadores.middlewares.MapeadoresDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -62,9 +69,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "mapeamento.pipelines.MapeamentoPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    "mapeadores.pipelines.FilterAndExportPipeline": 100,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -91,3 +98,5 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+FEED_EXPORT_FIELDS = ["territory_id", "state", "city", "pattern", "status",	"date_from", "date_to", "url"]
