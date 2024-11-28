@@ -1,0 +1,81 @@
+territory_id,state,city,pattern,status,date_from,date_to,url
+2611101,PE,Petrolina,doem,atual,2014-03-06,2024-10-31,http://doem.org.br/pe/petrolina/diarios
+2708907,AL,Satuba,doem,descontinuado,2013-01-02,2017-11-17,https://doem.org.br/al/satuba/diarios
+2802809,SE,Indiaroba,doem,descontinuado,2014-04-30,2019-06-14,https://doem.org.br/se/indiaroba/diarios
+2804805,SE,Nossa Senhora do Socorro,doem,atual,2022-11-07,2024-10-30,http://doem.org.br/se/nossasenhoradosocorro/diarios
+2900306,BA,Acajutiba,doem,atual,2013-01-30,2024-10-31,https://doem.org.br/ba/acajutiba/diarios
+2900504,BA,Érico Cardoso,doem,descontinuado,2016-02-19,2018-03-28,http://doem.org.br/ba/ericocardoso/diarios
+2900702,BA,Alagoinhas,doem,atual,2015-01-28,2024-10-31,http://doem.org.br/ba/alagoinhas/diarios
+2900801,BA,Alcobaça,doem,atual,2012-01-02,2024-10-31,https://doem.org.br/ba/alcobaca/diarios
+2901403,BA,Angical,doem,atual,2021-01-04,2024-10-31,http://doem.org.br/ba/angical/diarios
+2901700,BA,Antônio Cardoso,doem,descontinuado,2012-01-02,2020-11-30,http://doem.org.br/ba/antoniocardoso/diarios
+2902658,BA,Banzaê,doem,atual,2017-02-02,2024-11-01,https://doem.org.br/ba/banzae/diarios
+2903201,BA,Barreiras,doem,descontinuado,2013-02-05,2017-03-10,https://doem.org.br/ba/barreiras/diarios
+2903235,BA,Barro Alto,doem,descontinuado,2021-04-06,2021-07-21,https://doem.org.br/ba/barroalto/diarios
+2903276,BA,Barrocas,doem,descontinuado,2017-01-02,2021-11-30,http://doem.org.br/ba/barrocas/diarios
+2904902,BA,Cachoeira,doem,descontinuado,2017-01-03,2021-01-27,http://doem.org.br/ba/cachoeira/diarios
+2905008,BA,Caculé,doem,descontinuado,2014-01-02,2021-01-28,http://doem.org.br/ba/cacule/diarios
+2905206,BA,Caetité,doem,atual,2021-04-27,2024-10-31,http://doem.org.br/ba/caetite/diarios
+2905800,BA,Camamu,doem,descontinuado,2017-01-03,2020-11-30,https://doem.org.br/ba/camamu/diarios
+2905909,BA,Campo Alegre de Lourdes,doem,descontinuado,2020-11-30,2024-08-30,https://doem.org.br/ba/campoalegredelourdes/diarios
+2906006,BA,Campo Formoso,doem,atual,2013-01-31,2024-10-31,https://doem.org.br/ba/campoformoso/diarios
+2906501,BA,Candeias,doem,descontinuado,2013-10-23,2018-11-30,http://doem.org.br/ba/candeias/diarios
+2906808,BA,Cansanção,doem,descontinuado,2011-01-03,2015-01-29,https://doem.org.br/ba/cansancao/diarios
+2906824,BA,Canudos,doem,atual,2013-01-04,2024-10-31,https://doem.org.br/ba/canudos/diarios
+2907400,BA,Catolândia,doem,descontinuado,2015-05-06,2021-01-27,https://doem.org.br/ba/catolandia/diarios
+2907509,BA,Catu,doem,descontinuado,2014-07-17,2021-04-19,https://doem.org.br/ba/catu/diarios
+2907806,BA,Cícero Dantas,doem,atual,2012-01-03,2024-10-31,https://doem.org.br/ba/cicerodantas/diarios
+2907905,BA,Cipó,doem,atual,2012-01-02,2024-11-01,http://doem.org.br/ba/cipo/diarios
+2909406,BA,Cotegipe,doem,atual,2023-01-05,2024-10-28,https://doem.org.br/ba/cotegipe/diarios
+2909703,BA,Cristópolis,doem,atual,2021-01-12,2024-10-31,https://doem.org.br/ba/cristopolis/diarios
+2909802,BA,Cruz das Almas,doem,atual,2021-04-01,2024-11-01,http://doem.org.br/ba/cruzdasalmas/diarios
+2910602,BA,Esplanada,doem,atual,2021-01-04,2024-10-31,https://doem.org.br/ba/esplanada/diarios
+2910909,BA,Firmino Alves,doem,descontinuado,2021-01-06,2021-06-09,https://doem.org.br/ba/firminoalves/diarios
+2911006,BA,Floresta Azul,doem,descontinuado,2017-01-02,2022-11-30,http://doem.org.br/ba/florestaazul/diarios
+2911105,BA,Formosa do Rio Preto,doem,atual,2021-01-04,2024-10-31,http://doem.org.br/ba/formosadoriopreto/diarios
+2911303,BA,Gentio do Ouro,doem,descontinuado,2018-01-03,2018-11-30,http://doem.org.br/ba/gentiodoouro/diarios
+2911501,BA,Gongogi,doem,descontinuado,2013-01-10,2017-01-30,https://doem.org.br/ba/gongogi/diarios
+2911857,BA,Heliópolis,doem,descontinuado,2010-01-07,2013-02-20,https://doem.org.br/ba/heliopolis/diarios
+2913705,BA,Inhambupe,doem,atual,2013-01-02,2024-10-31,https://doem.org.br/ba/inhambupe/diarios
+2913903,BA,Ipiaú,doem,atual,2016-05-09,2024-10-31,https://doem.org.br/ba/ipiau/diarios
+2914505,BA,Irará,doem,atual,2014-04-24,2024-10-31,http://doem.org.br/ba/irara/diarios
+2914703,BA,Itaberaba,doem,atual,2022-07-04,2024-11-01,https://doem.org.br/ba/itaberaba/diarios
+2915007,BA,Itaeté,doem,descontinuado,2021-01-04,2021-05-13,https://doem.org.br/ba/itaete/diarios
+2915601,BA,Itamaraju,doem,atual,2008-03-28,2024-11-01,http://doem.org.br/ba/itamaraju/diarios
+2916401,BA,Itapetinga,doem,atual,2010-01-04,2024-10-31,https://doem.org.br/ba/itapetinga/diarios
+2916500,BA,Itapicuru,doem,atual,2014-01-02,2024-10-31,http://doem.org.br/ba/itapicuru/diarios
+2917201,BA,Ituaçu,doem,atual,2015-02-04,2024-10-31,https://doem.org.br/ba/ituacu/diarios
+2917607,BA,Jaguaquara,doem,atual,2021-04-05,2024-10-31,https://doem.org.br/ba/jaguaquara/diarios
+2917706,BA,Jaguarari,doem,descontinuado,2011-04-04,2019-04-26,http://doem.org.br/ba/jaguarari/diarios
+2918407,BA,Juazeiro,doem,atual,2013-02-01,2024-11-01,https://doem.org.br/ba/juazeiro/diarios
+2918803,BA,Laje,doem,atual,2020-01-08,2024-11-01,https://doem.org.br/ba/laje/diarios
+2918902,BA,Lajedão,doem,atual,2021-04-14,2024-10-30,https://doem.org.br/ba/lajedao/diarios
+2919603,BA,Macajuba,doem,atual,2014-03-17,2024-10-31,http://doem.org.br/ba/macajuba/diarios
+2920908,BA,Mascote,doem,atual,2010-01-04,2024-10-29,https://doem.org.br/ba/mascote/diarios
+2921104,BA,Medeiros Neto,doem,descontinuado,2012-01-03,2022-11-22,https://doem.org.br/ba/medeirosneto/diarios
+2921500,BA,Monte Santo,doem,atual,2013-01-09,2024-10-30,https://doem.org.br/ba/montesanto/diarios
+2921708,BA,Morro do Chapéu,doem,atual,2013-03-01,2024-10-31,https://doem.org.br/ba/morrodochapeu/diarios
+2922003,BA,Mucuri,doem,atual,2011-04-05,2024-10-31,https://doem.org.br/ba/mucuri/diarios
+2922102,BA,Mundo Novo,doem,descontinuado,2012-01-02,2017-01-03,http://doem.org.br/ba/mundonovo/diarios
+2923209,BA,Oliveira dos Brejinhos,doem,descontinuado,2019-02-01,2020-03-02,https://doem.org.br/ba/oliveiradosbrejinhos/diarios
+2925501,BA,Prado,doem,atual,2013-02-04,2024-11-01,http://doem.org.br/ba/prado/diarios
+2926608,BA,Ribeira do Pombal,doem,descontinuado,2014-01-16,2021-03-12,https://doem.org.br/ba/ribeiradopombal/diarios
+2927101,BA,Rodelas,doem,descontinuado,2013-01-29,2018-08-16,http://doem.org.br/ba/rodelas/diarios
+2927705,BA,Santa Cruz Cabrália,doem,atual,2017-01-09,2024-10-31,https://doem.org.br/ba/santacruzcabralia/diarios
+2928059,BA,Santa Luzia,doem,descontinuado,2021-01-04,2024-01-29,http://doem.org.br/ba/santaluzia/diarios
+2928406,BA,Santa Rita de Cássia,doem,atual,2021-01-04,2024-10-30,https://doem.org.br/ba/santaritadecassia/diarios
+2928604,BA,Santo Amaro,doem,descontinuado,2013-01-03,2021-02-16,https://doem.org.br/ba/santoamaro/diarios
+2928802,BA,Santo Estêvão,doem,atual,2009-11-09,2024-10-31,https://doem.org.br/ba/santoestevao/diarios
+2929305,BA,São Gonçalo dos Campos,doem,descontinuado,2014-01-03,2016-11-30,https://doem.org.br/ba/saogoncalodoscampos/diarios
+2929701,BA,Sátiro Dias,doem,atual,2021-03-30,2024-10-31,http://doem.org.br/ba/satirodias/diarios
+2929800,BA,Saúde,doem,descontinuado,2013-01-25,2017-03-15,https://doem.org.br/ba/saude/diarios
+2930105,BA,Senhor do Bonfim,doem,atual,2013-01-03,2024-10-31,http://doem.org.br/ba/senhordobonfim/diarios
+2930204,BA,Sento Sé,doem,atual,2017-01-02,2024-10-31,https://doem.org.br/ba/sentose/diarios
+2930402,BA,Serra Preta,doem,descontinuado,2012-01-04,2017-01-30,https://doem.org.br/ba/serrapreta/diarios
+2930907,BA,Tabocas do Brejo Velho,doem,descontinuado,2013-01-04,2021-01-27,http://doem.org.br/ba/tabocasdobrejovelho/diarios
+2931301,BA,Tapiramutá,doem,atual,2021-01-04,2024-11-01,https://doem.org.br/ba/tapiramuta/diarios
+2931350,BA,Teixeira de Freitas,doem,descontinuado,2017-03-10,2022-07-26,http://doem.org.br/ba/teixeiradefreitas/diarios
+2931608,BA,Teolândia,doem,atual,2014-01-15,2024-11-01,https://doem.org.br/ba/teolandia/diarios
+2931905,BA,Tucano,doem,atual,2013-01-04,2024-11-01,http://doem.org.br/ba/tucano/diarios
+4110508,PR,Ipiranga,doem,atual,2015-09-28,2024-10-31,https://doem.org.br/pr/ipiranga/diarios
+4126702,PR,Tamboara,doem,atual,2022-08-22,2024-11-01,https://doem.org.br/pr/tamboara/diarios
