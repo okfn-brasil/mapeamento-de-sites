@@ -1,0 +1,7 @@
+scrapy
+datetime
+dateparser
+pathlib
+urllib3
+python-dateutil
+python-slugify
