@@ -1,0 +1,10 @@
+territory_id,state,city,pattern,status,date_from,date_to,url
+3300233,RJ,Armação dos Búzios,adiariosv2,atual,2015-09-03,2025-02-07,https://portal.buzios.rj.gov.br/jornal.php
+3300233,RJ,Armação dos Búzios,adiariosv2,atual,2015-09-03,2025-02-07,https://buzios.aexecutivo.com.br/jornal.php
+3301306,RJ,Casimiro de Abreu,adiariosv2,atual,2017-01-04,2025-02-07,https://www.transparencia.casimirodeabreu.rj.gov.br/jornal.php
+3301504,RJ,Cordeiro,adiariosv2,atual,2017-10-05,2025-02-07,https://www.transparencia.cordeiro.rj.gov.br/jornal.php
+3304128,RJ,Quatis,adiariosv2,descontinuado,2013-02-15,2023-11-21,https://quatis.aexecutivo.com.br/jornal.php
+3304151,RJ,Quissamã,adiariosv2,atual,2017-01-31,2025-02-07,https://portal.quissama.rj.gov.br/jornal.php
+3305208,RJ,São Pedro da Aldeia,adiariosv2,descontinuado,2002-12-30,2018-04-13,https://portal.pmspa.rj.gov.br/jornal.php
+3305208,RJ,São Pedro da Aldeia,adiariosv2,descontinuado,2002-12-30,2018-04-13,https://pmspa.aexecutivo.com.br/jornal.php
+4217253,SC,São Pedro de Alcântara,adiariosv2,descontinuado,2002-12-30,2018-04-13,https://pmspa.aexecutivo.com.br/jornal.php
