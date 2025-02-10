@@ -15,7 +15,6 @@ class FilterAndExportPipeline:
     """Filtra itens repetidos e os salva, em arquivos CSV, por status."""
     
     def open_spider(self, spider):
-        self.today = datetime.today().strftime('%Y%m%d')
         self.data_dir = spider.settings.get("DATA_OUTPUT_DIR")
         
         self.status_codes = {}
@@ -45,8 +44,8 @@ class FilterAndExportPipeline:
 
     def _file_name(self, status, pattern):        
         if status == "invalido":
-            return f"{self.data_dir}/{self.today}_{pattern}_invalidos"
-        return f"{self.data_dir}/{self.today}_{pattern}_validos"
+            return f"{self.data_dir}/{pattern}_invalidos"
+        return f"{self.data_dir}/{pattern}_validos"
 
     def item_exists(self, adapter):
         """Verifica existencia de itens repetidos. 
