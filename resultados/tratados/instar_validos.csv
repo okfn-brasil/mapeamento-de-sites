@@ -1,0 +1,131 @@
+territory_id,state,city,pattern,status,date_from,date_to,url
+1100809,RO,Candeias do Jamari,instar,atual,2017-02-08,2025-02-07,https://www.candeias.mg.gov.br/portal/diario-oficial
+2906501,BA,Candeias,instar,atual,2017-02-08,2025-02-07,https://www.candeias.mg.gov.br/portal/diario-oficial
+3106705,MG,Betim,instar,atual,2008-01-11,2025-02-07,https://www.betim.mg.gov.br/portal/diario-oficial
+3111200,MG,Campo Belo,instar,atual,2016-01-05,2025-02-07,https://www.campobelo.mg.gov.br/portal/diario-oficial
+3112000,MG,Candeias,instar,atual,2017-02-08,2025-02-07,https://www.candeias.mg.gov.br/portal/diario-oficial
+3113909,MG,Carmo da Cachoeira,instar,atual,Edição com data ausente,2025-02-07,https://www.carmodacachoeira.mg.gov.br/portal/diario-oficial
+3114402,MG,Carmo do Rio Claro,instar,descontinuado,2021-05-14,2024-12-20,https://www.carmodorioclaro.mg.gov.br/portal/diario-oficial
+3118601,MG,Contagem,instar,atual,Edição com data ausente,2025-02-07,https://portal.contagem.mg.gov.br/portal/diario-oficial
+3120607,MG,Crucilândia,instar,atual,2015-03-31,2025-02-07,http://www.prefeituradecrucilandia.mg.gov.br/portal/diario-oficial
+3129707,MG,Ibiraci,instar,atual,2024-07-15,2025-02-07,https://www.ibiraci.mg.gov.br/portal/diario-oficial
+3133808,MG,Itaúna,instar,atual,Edição com data ausente,2025-02-07,https://www.itauna.mg.gov.br/portal/diario-oficial
+3135209,MG,Januária,instar,atual,2022-04-29,2025-02-07,https://www.januaria.mg.gov.br/portal/diario-oficial
+3136652,MG,Juatuba,instar,atual,2016-01-05,2025-02-07,https://www.juatuba.mg.gov.br/portal/diario-oficial
+3145208,MG,Nova Serrana,instar,atual,Edição com data ausente,2025-02-07,https://www.novaserrana.mg.gov.br/portal/diario-oficial
+3148004,MG,Patos de Minas,instar,atual,2019-10-22,2025-02-07,https://www.patosdeminas.mg.gov.br/portal/diario-oficial
+3151008,MG,Piranguinho,instar,atual,2018-07-30,2025-02-08,https://www.piranguinho.mg.gov.br/portal/diario-oficial
+3157005,MG,Salinas,instar,atual,2017-02-01,2025-01-24,https://www.salinas.mg.gov.br/portal/diario-oficial
+3157377,MG,Santa Cruz de Salinas,instar,atual,2017-02-01,2025-01-24,https://www.salinas.mg.gov.br/portal/diario-oficial
+3168002,MG,Taiobeiras,instar,atual,2022-12-31,2025-02-08,https://www.taiobeiras.mg.gov.br/portal/diario-oficial
+3170800,MG,Várzea da Palma,instar,atual,2022-09-30,2025-02-07,https://www.varzeadapalma.mg.gov.br/portal/diario-oficial
+3500204,SP,Adolfo,instar,descontinuado,2015-05-14,2020-01-15,https://www.adolfo.sp.gov.br/portal/diario-oficial
+3500600,SP,Águas de São Pedro,instar,atual,2021-05-18,2025-02-07,https://www.aguasdesaopedro.sp.gov.br/portal/diario-oficial
+3501103,SP,Alto Alegre,instar,atual,2018-07-03,2025-02-07,https://www.altoalegre.sp.gov.br/portal/diario-oficial
+3501152,SP,Alumínio,instar,atual,2013-01-31,2025-01-31,https://www.aluminio.sp.gov.br/portal/diario-oficial
+3501202,SP,Álvares Florence,instar,atual,2013-03-13,2025-02-07,https://www.alvaresflorence.sp.gov.br/portal/diario-oficial
+3502101,SP,Andradina,instar,atual,2021-03-03,2025-02-07,https://www.andradina.sp.gov.br/portal/diario-oficial
+3502507,SP,Aparecida,instar,atual,2021-08-23,2025-02-07,https://www.aparecida.sp.gov.br/portal/diario-oficial
+3502606,SP,Aparecida d'Oeste,instar,atual,2021-08-23,2025-02-07,https://www.aparecida.sp.gov.br/portal/diario-oficial
+3502754,SP,Araçariguama,instar,atual,2019-09-06,2025-02-07,https://www.aracariguama.sp.gov.br/portal/diario-oficial
+3503158,SP,Arapeí,instar,atual,2021-05-27,2025-02-06,https://www.arapei.sp.gov.br/portal/diario-oficial
+3504404,SP,Avanhandava,instar,atual,2022-01-07,2025-02-06,https://www.avanhandava.sp.gov.br/portal/diario-oficial
+3504602,SP,Bady Bassitt,instar,atual,2024-03-05,2025-02-07,https://www.badybassitt.sp.gov.br/portal/diario-oficial
+3505005,SP,Barão de Antonina,instar,atual,2019-01-03,2025-02-07,https://www.baraodeantonina.sp.gov.br/portal/diario-oficial
+3505104,SP,Barbosa,instar,atual,2021-01-21,2025-02-07,https://www.barbosa.sp.gov.br/portal/diario-oficial
+3507704,SP,Braúna,instar,descontinuado,2020-02-12,2024-07-19,https://www.brauna.sp.gov.br/portal/diario-oficial
+3507753,SP,Brejo Alegre,instar,atual,2021-10-21,2025-02-07,http://www.brejoalegre.sp.gov.br/portal/diario-oficial
+3511706,SP,Charqueada,instar,atual,2009-01-09,2025-02-07,https://www.charqueada.sp.gov.br/portal/diario-oficial
+3512605,SP,Coronel Macedo,instar,atual,2017-05-29,2025-02-07,http://www.coronelmacedo.sp.gov.br/portal/diario-oficial
+3513850,SP,Dirce Reis,instar,descontinuado,2019-10-07,2024-05-09,https://www.dircereis.sp.gov.br/portal/diario-oficial
+3514403,SP,Dracena,instar,atual,2020-11-24,2025-02-07,https://www.dracena.sp.gov.br/portal/diario-oficial
+3514809,SP,Eldorado,instar,atual,2018-12-04,2025-02-07,https://www.eldorado.sp.gov.br/portal/diario-oficial
+3515905,SP,Floreal,instar,atual,2022-11-09,2025-02-07,https://www.floreal.sp.gov.br/portal/diario-oficial
+3516903,SP,General Salgado,instar,atual,2022-01-13,2025-02-07,https://www.generalsalgado.sp.gov.br/portal/diario-oficial
+3517109,SP,Glicério,instar,atual,Edição com data ausente,2025-02-07,https://www.glicerio.sp.gov.br/portal/diario-oficial
+3519105,SP,Iacanga,instar,atual,2014-01-09,2025-02-07,https://www.iacanga.sp.gov.br/portal/diario-oficial
+3519600,SP,Ibitinga,instar,atual,Edição com data ausente,2025-02-07,https://www.ibitinga.instarbr.com.br/portal/diario-oficial
+3519907,SP,Iepê,instar,atual,2019-10-16,2025-02-07,https://www.iepe.sp.gov.br/portal/diario-oficial
+3520004,SP,Igaraçu do Tietê,instar,atual,2021-01-01,2025-02-07,https://www.igaracudotiete.sp.gov.br/portal/diario-oficial
+3520301,SP,Iguape,instar,atual,Edição com data ausente,2025-02-08,http://www.iguape.sp.gov.br/portal/diario-oficial
+3520400,SP,Ilhabela,instar,atual,Edição com data ausente,2025-02-07,http://www.ilhabela.sp.gov.br/portal/diario-oficial
+3521408,SP,Iracemápolis,instar,atual,2017-01-02,2025-02-07,https://www.iracemapolis.sp.gov.br/portal/diario-oficial
+3521606,SP,Irapuru,instar,atual,2023-03-10,2025-02-07,http://www.irapuru.sp.gov.br/portal/diario-oficial
+3522653,SP,Itapirapuã Paulista,instar,atual,Edição com data ausente,2025-02-07,https://www.itapirapuapaulista.sp.gov.br/portal/diario-oficial
+3522703,SP,Itápolis,instar,atual,2017-01-11,2025-02-07,https://www.itapolis.sp.gov.br/portal/diario-oficial
+3522802,SP,Itaporanga,instar,atual,2009-04-16,2025-02-07,https://www.itaporanga.sp.gov.br/portal/diario-oficial
+3522901,SP,Itapuí,instar,atual,2017-12-15,2025-02-07,https://www.itapui.sp.gov.br/portal/diario-oficial
+3523305,SP,Itariri,instar,atual,2023-02-24,2025-02-07,https://www.itariri.sp.gov.br/portal/diario-oficial
+3523800,SP,Itobi,instar,atual,2011-04-01,2025-02-06,https://www.itobi.sp.gov.br/portal/diario-oficial
+3524303,SP,Jaboticabal,instar,atual,2009-08-21,2025-02-07,https://www.jaboticabal.sp.gov.br/portal/diario-oficial
+3525508,SP,Joanópolis,instar,atual,2013-01-30,2025-02-07,https://www.joanopolis.sp.gov.br/portal/diario-oficial
+3525607,SP,João Ramalho,instar,atual,2020-03-24,2025-02-07,https://www.joaoramalho.sp.gov.br/portal/diario-oficial
+3526001,SP,Junqueirópolis,instar,atual,2020-10-24,2025-02-08,https://www.junqueiropolis.sp.gov.br/portal/diario-oficial
+3526308,SP,Lagoinha,instar,atual,2021-11-25,2025-02-06,https://www.lagoinha.sp.gov.br/portal/diario-oficial
+3526506,SP,Lavínia,instar,atual,Edição com data ausente,2025-02-07,http://www.lavinia.sp.gov.br/portal/diario-oficial
+3527702,SP,Luiziânia,instar,atual,2021-04-06,2025-02-07,https://www.luiziania.sp.gov.br/portal/diario-oficial
+3528106,SP,Macaubal,instar,atual,2023-06-21,2025-02-07,https://macaubal.sp.gov.br/portal/diario-oficial
+3528403,SP,Mairinque,instar,atual,2024-01-19,2025-02-07,https://www.mairinque.sp.gov.br/portal/diario-oficial
+3528809,SP,Maracaí,instar,atual,2017-08-08,2025-02-07,https://www.maracai.sp.gov.br/portal/diario-oficial
+3529005,SP,Marília,instar,atual,2009-06-01,2025-02-08,https://www.marilia.sp.gov.br/portal/diario-oficial
+3530003,SP,Mira Estrela,instar,atual,2021-02-16,2025-02-07,https://www.miraestrela.sp.gov.br/portal/diario-oficial
+3530201,SP,Mirante do Paranapanema,instar,atual,2018-09-17,2025-02-07,https://www.paranapanema.sp.gov.br/portal/diario-oficial
+3530201,SP,Mirante do Paranapanema,instar,atual,2019-05-07,2025-02-08,https://www.mirantedoparanapanema.sp.gov.br/portal/diario-oficial
+3531001,SP,Monções,instar,atual,2024-01-12,2025-02-07,https://www.moncoes.sp.gov.br/portal/diario-oficial
+3531308,SP,Monte Alto,instar,atual,2017-09-11,2025-02-07,http://www.montealto.instaridc.com.br/portal/diario-oficial
+3531803,SP,Monte Mor,instar,atual,2019-09-20,2025-02-07,https://www.montemor.sp.gov.br/portal/diario-oficial
+3532603,SP,Nhandeara,instar,atual,2023-08-17,2025-02-07,https://www.nhandeara.sp.gov.br/portal/diario-oficial
+3533304,SP,Nova Luzitânia,instar,atual,2022-10-31,2025-02-07,https://www.novaluzitania.sp.gov.br/portal/diario-oficial
+3533908,SP,Olímpia,instar,descontinuado,2013-01-05,2017-06-24,https://www.olimpia.sp.gov.br/portal/diario-oficial
+3534708,SP,Ourinhos,instar,atual,2005-01-20,2025-02-07,https://www.ourinhos.sp.gov.br/portal/diario-oficial
+3535309,SP,Palmital,instar,atual,2005-06-11,2025-02-07,https://www.palmital.sp.gov.br/portal/diario-oficial
+3535804,SP,Paranapanema,instar,atual,2018-09-17,2025-02-07,https://www.paranapanema.sp.gov.br/portal/diario-oficial
+3536257,SP,Parisi,instar,atual,Edição com data ausente,2025-02-07,https://www.parisi.sp.gov.br/portal/diario-oficial
+3536307,SP,Patrocínio Paulista,instar,atual,2017-08-18,2025-02-07,https://www.patrociniopaulista.sp.gov.br/portal/diario-oficial
+3536505,SP,Paulínia,instar,atual,Edição com data ausente,2025-02-07,https://www.paulinia.sp.gov.br/portal/diario-oficial
+3537305,SP,Penápolis,instar,atual,2017-01-03,2025-02-07,https://www.penapolis.sp.gov.br/portal/diario-oficial
+3537800,SP,Piedade,instar,atual,2018-10-11,2025-02-06,https://www.piedade.sp.gov.br/portal/diario-oficial
+3538105,SP,Pindorama,instar,atual,2022-04-29,2025-02-07,https://www.pindorama.sp.gov.br/portal/diario-oficial
+3539608,SP,Planalto,instar,atual,2021-10-10,2025-02-06,https://www.planalto.sp.gov.br/portal/diario-oficial
+3539905,SP,Poloni,instar,atual,2022-11-04,2025-02-08,https://www.poloni.sp.gov.br/portal/diario-oficial
+3540309,SP,Pontes Gestal,instar,atual,2021-07-14,2025-02-07,https://www.pontesgestal.sp.gov.br/portal/diario-oficial
+3540507,SP,Porangaba,instar,atual,2020-10-06,2025-02-07,http://www.porangaba.sp.gov.br/portal/diario-oficial
+3540804,SP,Potirendaba,instar,atual,2024-01-21,2025-02-07,https://www.potirendaba.sp.gov.br/portal/diario-oficial
+3541059,SP,Pratânia,instar,atual,2019-05-13,2025-02-07,https://www.pratania.sp.gov.br/portal/diario-oficial
+3541307,SP,Presidente Epitácio,instar,atual,2019-10-18,2025-02-07,https://www.presidenteepitacio.sp.gov.br/portal/diario-oficial
+3543501,SP,Riversul,instar,descontinuado,2019-12-16,2023-10-05,https://www.riversul.sp.gov.br/portal/diario-oficial
+3544905,SP,Sales Oliveira,instar,atual,2024-01-16,2025-02-06,https://www.salesoliveira.sp.gov.br/portal/diario-oficial
+3546504,SP,Santa Ernestina,instar,atual,2019-08-19,2025-02-07,https://www.santaernestina.sp.gov.br/portal/diario-oficial
+3547007,SP,Santa Maria da Serra,instar,atual,2022-03-16,2025-02-06,https://www.santamariadaserra.sp.gov.br/portal/diario-oficial
+3547809,SP,Santo André,instar,atual,1201-10-12,2025-02-07,https://web.santoandre.sp.gov.br/portal/diario-oficial
+3550100,SP,São Manuel,instar,atual,2016-06-07,2025-02-07,http://www.saomanuel.sp.gov.br/portal/diario-oficial
+3550407,SP,São Pedro,instar,atual,2021-05-25,2025-02-07,https://www.saopedro.sp.gov.br/portal/diario-oficial
+3550605,SP,São Roque,instar,atual,2020-05-08,2025-02-07,https://www.saoroque.sp.gov.br/portal/diario-oficial
+3551207,SP,Sarutaiá,instar,atual,2020-03-13,2025-02-04,https://www.sarutaia.sp.gov.br/portal/diario-oficial
+3551306,SP,Sebastianópolis do Sul,instar,atual,2020-05-26,2025-02-07,https://www.sebastianopolisdosul.sp.gov.br/portal/diario-oficial
+3553500,SP,Tapiraí,instar,atual,2019-09-03,2025-02-07,https://www.tapirai.sp.gov.br/portal/diario-oficial
+3553658,SP,Taquaral,instar,atual,2017-01-03,2025-02-07,https://www.taquaral.sp.gov.br/portal/diario-oficial
+3555208,SP,Turiúba,instar,atual,2020-06-19,2025-02-06,https://www.turiuba.sp.gov.br/portal/diario-oficial
+3555703,SP,União Paulista,instar,atual,2023-01-11,2025-02-07,https://uniaopaulista.sp.gov.br/portal/diario-oficial
+3556206,SP,Valinhos,instar,atual,2004-12-12,2025-02-07,https://www.valinhos.sp.gov.br/portal/diario-oficial
+3556305,SP,Valparaíso,instar,atual,2021-11-19,2025-02-08,https://www.valparaiso.sp.gov.br/portal/diario-oficial
+3556602,SP,Vera Cruz,instar,atual,2018-02-01,2025-02-07,https://www.veracruz.sp.gov.br/portal/diario-oficial
+3556701,SP,Vinhedo,instar,atual,2010-12-09,2025-02-07,https://www.vinhedo.sp.gov.br/portal/diario-oficial
+3557006,SP,Votorantim,instar,atual,2018-04-20,2025-02-07,https://www.votorantim.sp.gov.br/portal/diario-oficial
+4101309,PR,Antônio Olinto,instar,atual,2016-06-14,2025-02-07,https://antonioolinto.pr.gov.br/portal/diario-oficial
+4111704,PR,Jaboti,instar,atual,2018-01-03,2025-02-07,http://www.jaboti.pr.gov.br/portal/diario-oficial
+4120507,PR,Primeiro de Maio,instar,atual,2022-04-14,2025-02-07,https://www.primeirodemaio.pr.gov.br/portal/diario-oficial
+4124301,PR,Santo Antônio do Paraíso,instar,atual,2012-12-27,2025-02-07,https://www.pmsantoantoniodoparaiso.pr.gov.br/portal/diario-oficial
+4125100,PR,São João do Triunfo,instar,atual,2013-04-10,2025-02-07,https://www.sjtriunfo.pr.gov.br/portal/diario-oficial
+4125605,PR,São Mateus do Sul,instar,atual,2010-12-10,2025-02-07,https://www.saomateusdosul.pr.gov.br/portal/diario-oficial
+4216800,SC,São José do Cerrito,instar,atual,2019-09-09,2025-02-06,https://www.cerrito.rs.gov.br/portal/diario-oficial
+4303004,RS,Cachoeira do Sul,instar,atual,2021-10-27,2025-02-07,https://www.cachoeiradosul.rs.gov.br/portal/diario-oficial
+4304705,RS,Carazinho,instar,atual,2023-08-25,2025-02-07,https://www.carazinho.rs.gov.br/portal/diario-oficial
+4305124,RS,Cerrito,instar,atual,2019-09-09,2025-02-06,https://www.cerrito.rs.gov.br/portal/diario-oficial
+4318200,RS,São Francisco de Paula,instar,atual,2023-08-31,2025-02-06,http://www.saofranciscodepaula.rs.gov.br/portal/diario-oficial
+4322707,RS,Vera Cruz,instar,atual,2018-05-02,2025-02-07,https://www.veracruz.rs.gov.br/portal/diario-oficial
+5002100,MS,Bela Vista,instar,atual,2011-11-16,2025-02-07,https://www.belavista.ms.gov.br/portal/diario-oficial
+5003256,MS,Costa Rica,instar,atual,2005-01-03,2025-02-07,https://www.costarica.ms.gov.br/portal/diario-oficial
+5004403,MS,Inocência,instar,atual,Edição com data ausente,2025-02-07,https://www.inocencia.ms.gov.br/portal/diario-oficial
+5005400,MS,Maracaju,instar,atual,2013-03-14,2025-02-07,https://www.maracaju.ms.gov.br/portal/diario-oficial
+5103379,MT,Cotriguaçu,instar,atual,2023-11-17,2025-02-07,https://www.cotriguacu.mt.gov.br/portal/diario-oficial
