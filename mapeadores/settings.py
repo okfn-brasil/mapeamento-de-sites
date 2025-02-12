@@ -50,6 +50,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 50
 #}
 
 # Enable or disable spider middlewares
+REDIRECT_ENABLED = False
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
 #    "mapeadores.middlewares.MapeadoresSpiderMiddleware": 543,

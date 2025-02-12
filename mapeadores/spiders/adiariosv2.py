@@ -7,17 +7,20 @@ from mapeadores.spiders.bases.mapeador_semantico import MapeadorSemantico
 from mapeadores.items import MapeamentoItem
 
 
-class MapeadorAdiariosV1(MapeadorSemantico):
-    """Mapeia o padrao adiariosv1
+class MapeadorAdiariosV2(MapeadorSemantico):
+    """Mapeia o padrao adiariosv2
 
     Exemplos:
-    https://www.buriticupu.ma.gov.br/diariooficial.php
-    https://www.anajatuba.ma.gov.br/diariooficial.php
+    # https://buzios.aexecutivo.com.br/jornal.php
+    https://www.transparencia.casimirodeabreu.rj.gov.br/jornal.php
+    # https://portal.iguaba.rj.gov.br/jornal.php
     """
-    name = "adiariosv1"
+    name = "adiariosv2"
 
     url_patterns = [
-        "https://www.nome_do_municipio.UF.gov.br/diariooficial.php",
+        "https://nome_do_municipio.aexecutivo.com.br/jornal.php",
+        "https://www.transparencia.nome_do_municipio.UF.gov.br/jornal.php",
+        "https://portal.nome_do_municipio.UF.gov.br/jornal.php",
     ]
 
     def parse(self, response, item):
@@ -25,7 +28,7 @@ class MapeadorAdiariosV1(MapeadorSemantico):
             item["url"] = response.url
             item["status"] = "valido"
 
-            date_to = self.get_date(response, 0)
+            date_to = self.get_date(response, 1)
             item["date_to"] = date_to
 
             yield scrapy.Request(
@@ -46,24 +49,20 @@ class MapeadorAdiariosV1(MapeadorSemantico):
         )
 
     def belongs_to_pattern(self, response):
-        if (
-            "assesi.com.br" in response.text
-            or "siasp.com.br" in response.text
-            or len(response.xpath('//*[@class="public_paginas"]').getall()) > 0
-        ):
-            if "diario_lista" in response.text:
+        if "table-condensed table-bordered" in response.text:
+            if len(response.xpath('//*[@class="public_paginas"]').getall()) > 0:
                 if "Foram encontrados 0 registros" not in response.text:
                     return True
         return False
 
     def get_last_page(self, response):
         page_pagination = response.css(".pagination li a span::text").getall()
-        page_numbers = [int(i) for i in page_pagination]
+        page_numbers = [int(i.strip()) for i in page_pagination]
         last_page_index = max(page_numbers)
         return last_page_index-1
 
     def get_date(self, response, position):
-        raw = response.css("#diario_lista")[position].css(".calendarioIcon::text").get().strip()
+        raw = response.css("table tr")[position].css("td::text").get().strip()
         return datetime.datetime.strptime(raw, "%d/%m/%Y").date()
         
 
